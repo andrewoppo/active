@@ -4,7 +4,7 @@ const bcrypt = require('bcrypt');
 const passport = require('passport');
 
 router.post('/signup', (req, res, next) => {
-    const { username, password, type } = req.body;
+    const { username, password, role } = req.body;
     console.log(req.body);
     if (password.length < 7) {
       return res.status(400).json({ message: 'Your password must be at least 7 characters' });
@@ -23,7 +23,7 @@ router.post('/signup', (req, res, next) => {
             User.create({
                 username: username,
                 password: hash,
-                role: type
+                role: role
             })
             .then(createdUser => {
               console.log(createdUser)

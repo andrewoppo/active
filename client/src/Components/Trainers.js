@@ -49,7 +49,7 @@ export default class Trainers extends Component {
                             </div>
                         )
                     })}
-                    <AddTrainer getData={this.getData} />
+                    {/* <AddTrainer getData={this.getData} /> */}
                 </div>
 
             </div>

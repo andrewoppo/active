@@ -12,15 +12,16 @@ router.get('/', (req, res, next) => {
 });
 
 router.post('/add', (req, res, next) => {
-  const { name, imageUrl, age, styles, about } = req.body;
+  //add styles back in:
+  const { name, imageUrl, age, about } = req.body;
   console.log(req.body)
-  Trainer.create({ name, imageUrl, age, styles, about })
+  //add styles back
+  Trainer.create({ name, imageUrl, age, about })
     .then(trainer => {
       res.status(200).json(trainer)
     })
     .catch(err => {
       console.log(err);
-      //res.status(400).json({ message: 'Please enter username' });
       });
 });
 

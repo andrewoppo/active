@@ -7,7 +7,7 @@ export default class Signup extends Component {
     username: '',
     password: '',
     message: '',
-    type: ''
+    role: ''
   }
 
   handleChange = event => {
@@ -20,15 +20,15 @@ export default class Signup extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    const { username, password, type } = this.state;
-    signup(username, password, type)
+    const { username, password, role } = this.state;
+    signup(username, password, role)
       .then(user => {
         if (user.message) {
           this.setState({
             message: user.message,
             username: '',
             password: '',
-            type: ''
+            role: ''
           })
         } else {
           console.log('User added: ', user)
@@ -45,9 +45,9 @@ export default class Signup extends Component {
         <h2>Signup</h2>
         <form onSubmit={this.handleSubmit}>
             <select 
-                name="type" 
+                name="role" 
                 onChange={this.handleChange}
-                value={this.state.type}
+                value={this.state.role}
                 >
                 <option value="" selected disabled hidden>Account type...</option>
                 <option value="user">User</option>

@@ -31,7 +31,10 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-          <NavBar />
+          <NavBar 
+            user={this.state.user} 
+            setUser={this.setUser}
+            />
           <Switch>
             <Route 
               exact path='/'

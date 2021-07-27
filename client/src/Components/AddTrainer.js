@@ -8,15 +8,15 @@ export default class AddTrainer extends Component {
         imageUrl: '',
         age: '',
         about: '',
-        styles: [
-            {value: "pilates", isChecked: false},
-            {value: "HIIT", isChecked: false},
-            {value: "yoga", isChecked: false},
-            {value: "weight-training", isChecked: false},
-            {value: "cross-fit", isChecked: false},
-            {value: "barre", isChecked: false},
-            {value: "conditioning", isChecked: false}
-        ]
+        // styles: [
+        //     {value: "pilates", isChecked: false},
+        //     {value: "HIIT", isChecked: false},
+        //     {value: "yoga", isChecked: false},
+        //     {value: "weight-training", isChecked: false},
+        //     {value: "cross-fit", isChecked: false},
+        //     {value: "barre", isChecked: false},
+        //     {value: "conditioning", isChecked: false}
+        // ]
     }
     handleSubmit = event => {
         console.log('Adding :', this.state.name)
@@ -25,7 +25,7 @@ export default class AddTrainer extends Component {
 			name: this.state.name,
 			imageUrl: this.state.imageUrl,
             age: this.state.age,
-            styles: this.state.styles,
+            // styles: this.state.styles,
             about: this.state.about
 		})
 			.then(() => {
@@ -33,28 +33,28 @@ export default class AddTrainer extends Component {
 					name: '',
 					imageUrl: '',
                     age: '',
-                    styles: [],
+                    // styles: [],
                     about: ''
 
 				})
-				this.props.getData();
 			})
 			.catch(err => console.log('There is an error: ', err))
 	}
-    handleAllChecked = event => {
-        const styles = this.state.styles;
-        styles.forEach(style => style.isChecked = event.target.checked);
-        this.setState({styles: styles})
-    }
-    handleCheckedElements = event => {
-        let styles = this.state.styles;
-        styles.forEach(style => {
-            if (style.value === event.target.value) {
-                style.isChecked = event.target.checked
-            }
-        })
-        this.setState({styles: styles})
-    }
+    // handleAllChecked = event => {
+    //     const styles = this.state.styles;
+    //     styles.forEach(style => style.isChecked = event.target.checked);
+    //     this.setState({styles: styles})
+    // }
+    // handleCheckedElements = event => {
+    //     let styles = this.state.styles;
+    //     styles.forEach(style => {
+    //         if (style.value === event.target.value) {
+    //             style.isChecked = event.target.checked
+    //         }
+    //     })
+    //     this.setState({styles: styles})
+    // }
+    
 	handleChange = event => {
 		const { name, value } = event.target;
 		this.setState({
@@ -97,7 +97,7 @@ export default class AddTrainer extends Component {
                     value={this.state.about}
                     onChange={this.handleChange}
                 />
-                <p>Select workout styles offered:</p>
+                {/* <p>Select workout styles offered:</p>
                 <div className="style-form">
                 <input type="checkbox" onChange={this.handleAllChecked}  value="checkedall" /> Check / Uncheck All
                     <ul>
@@ -107,7 +107,7 @@ export default class AddTrainer extends Component {
                     })
                     }
                     </ul>
-                </div>
+                </div> */}
 				<button type="submit">Add trainer profile</button>
 			</form>
             </div>
