@@ -23,7 +23,7 @@ export default class Trainers extends Component {
                     <h2>The perfect trainer awaits you.</h2>
                 </div>
                 <div className="trainer-box">
-                    <Link to={'/trainers/add-trainer'}>Add Trainer</Link>
+                    <Link to={'/trainers/addtrainer'}>Add Trainer</Link>
                     {this.state.trainers.map(trainer => {
                         return (
                             <div key={trainer._id} className="trainer">

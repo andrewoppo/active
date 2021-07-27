@@ -45,12 +45,8 @@ class App extends React.Component {
               exact path='/trainers/:id'
               component={TrainerBooking}
             />
-            {/* <Route
-              exact path='/about'
-              component={About}
-            />  */}
             <Route
-              exact path='/trainers/add-trainer'
+              exact path='/trainers/addtrainer'
               component={AddTrainer}
             />
             <Route

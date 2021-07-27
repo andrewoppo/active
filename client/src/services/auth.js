@@ -7,7 +7,7 @@ const signup = (username, password, type) => {
       return res.data
     })
     .catch(err => {
-      return err.res.data
+      return err.response.data
     })
 }
 
@@ -17,7 +17,7 @@ const login = (username, password) => {
       return res.data
     })
     .catch(err => {
-      return err.res.data
+      return err.response.data
     })
 }
 
@@ -27,7 +27,7 @@ const logout = () => {
       return res.data;
     })
     .catch(err => {
-      return err.res.data
+      return err.response.data
     })
 }
 

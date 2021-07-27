@@ -23,7 +23,7 @@ router.post('/signup', (req, res, next) => {
             User.create({
                 username: username,
                 password: hash,
-                type: type
+                role: type
             })
             .then(createdUser => {
               console.log(createdUser)
