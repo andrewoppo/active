@@ -42,12 +42,12 @@ class App extends React.Component {
               component={Trainers}
             />
             <Route
-              exact path='/trainers/:id'
-              component={TrainerBooking}
+              exact path='/trainers/add-trainer'
+              component={AddTrainer}
             />
             <Route
-              exact path='/trainers/addtrainer'
-              component={AddTrainer}
+              exact path='/trainers/:id'
+              component={TrainerBooking}
             />
             <Route
               exact path='/signup'

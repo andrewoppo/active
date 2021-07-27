@@ -13,11 +13,15 @@ router.get('/', (req, res, next) => {
 
 router.post('/add', (req, res, next) => {
   const { name, imageUrl, age, styles, about } = req.body;
+  console.log(req.body)
   Trainer.create({ name, imageUrl, age, styles, about })
     .then(trainer => {
-      res.json(trainer)
+      res.status(200).json(trainer)
     })
-    .catch(err => next(err))
+    .catch(err => {
+      console.log(err);
+      //res.status(400).json({ message: 'Please enter username' });
+      });
 });
 
 router.get('/:id', (req, res, next) => {

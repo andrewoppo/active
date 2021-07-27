@@ -1,13 +1,14 @@
 import React, { Component } from 'react'
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import AddTrainer from './AddTrainer';
 
 export default class Trainers extends Component {
     state = {
         trainers: []
     }
 
-    componentDidMount () {
+    getData = () => {
         axios.get('/api/trainers')
             .then(res => {
                 this.setState({
@@ -16,6 +17,11 @@ export default class Trainers extends Component {
             })
             .catch(err => console.log(err))
     }
+
+    componentDidMount() {
+		this.getData();
+	}
+
     render() {
         return (
             <div className="Trainers">
@@ -23,7 +29,7 @@ export default class Trainers extends Component {
                     <h2>The perfect trainer awaits you.</h2>
                 </div>
                 <div className="trainer-box">
-                    <Link to={'/trainers/addtrainer'}>Add Trainer</Link>
+                    <Link to={'/trainers/add-trainer'}>Add Trainer</Link>
                     {this.state.trainers.map(trainer => {
                         return (
                             <div key={trainer._id} className="trainer">
@@ -43,6 +49,7 @@ export default class Trainers extends Component {
                             </div>
                         )
                     })}
+                    <AddTrainer getData={this.getData} />
                 </div>
 
             </div>
