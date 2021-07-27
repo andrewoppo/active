@@ -115,6 +115,15 @@
   justify-content: space-evenly;
 }
 
+.Trainers {
+  display: flex;
+}
+.Trainers h2 {
+  width: 300px;
+  font-size: 32px;
+  text-align: left;
+  padding-left: 20px;
+}
 .trainer-info p {
   text-align: left;
   padding-left: 20px;
@@ -124,6 +133,9 @@
   text-align: left;
 }
 
+.trainer-box {
+  padding-left: 50px;
+}
 .styles {
   display: flex;
   justify-content: left;

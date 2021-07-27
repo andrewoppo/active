@@ -3,6 +3,7 @@ import axios from 'axios';
 const signup = (username, password, type) => {
   return axios.post('/api/auth/signup', { username, password, type })
     .then(res => {
+      console.log('res.data: ', res.data);
       return res.data
     })
     .catch(err => {

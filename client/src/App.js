@@ -8,6 +8,7 @@ import About from './Components/About';
 import Login from './Components/Login';
 import Signup from './Components/Signup';
 import Home from './Components/Home';
+import AddTrainer from './Components/AddTrainer';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 
@@ -48,6 +49,10 @@ class App extends React.Component {
               exact path='/about'
               component={About}
             />  */}
+            <Route
+              exact path='/trainers/add-trainer'
+              component={AddTrainer}
+            />
             <Route
               exact path='/signup'
               render={props => <Signup setUser={this.setUser} {...props}/>}
