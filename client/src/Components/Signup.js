@@ -48,6 +48,7 @@ export default class Signup extends Component {
                 name="role" 
                 onChange={this.handleChange}
                 value={this.state.role}
+                id="role"
                 >
                 <option value="" selected disabled hidden>Account type...</option>
                 <option value="user">User</option>

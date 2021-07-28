@@ -53,10 +53,23 @@
 }
 
 .left-side {
-  width: 30vh;
+  min-width: 220px;
   height: 80px;
   display: flex;
   justify-content: space-between;
+}
+
+.user-links {
+  width: 30vh;
+  min-width: 220px;
+  height: 80px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.add-trainer {
+  padding-left: 20px;
+  width: 200px;
 }
 
 .right-side {
@@ -160,3 +173,4 @@
   border: none;
   width: 200px;
 }
+

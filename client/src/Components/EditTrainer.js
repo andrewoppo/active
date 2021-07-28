@@ -39,7 +39,7 @@ export default class EditTrainer extends Component {
                         value={this.props.about}
                         onChange={this.props.handleChange}
                     />
-                    {/* <p>Select workout styles offered:</p>
+                    <p>Select workout styles offered:</p>
                     <div className="style-form">
                     <input type="checkbox" onChange={this.props.handleAllChecked}  value="checkedall" /> Check / Uncheck All
                         <ul>
@@ -49,7 +49,7 @@ export default class EditTrainer extends Component {
                         })
                         }
                         </ul>
-                    </div> */}
+                    </div>
                     <button type="submit">Update trainer profile</button>
                 </form>
 			</div>

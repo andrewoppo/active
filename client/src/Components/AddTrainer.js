@@ -8,24 +8,27 @@ export default class AddTrainer extends Component {
         imageUrl: '',
         age: '',
         about: '',
-        // styles: [
-        //     {value: "pilates", isChecked: false},
-        //     {value: "HIIT", isChecked: false},
-        //     {value: "yoga", isChecked: false},
-        //     {value: "weight-training", isChecked: false},
-        //     {value: "cross-fit", isChecked: false},
-        //     {value: "barre", isChecked: false},
-        //     {value: "conditioning", isChecked: false}
-        // ]
+        styles: [],
+        stylesOptions: [
+            {value: "pilates", isChecked: false},
+            {value: "HIIT", isChecked: false},
+            {value: "yoga", isChecked: false},
+            {value: "weight-training", isChecked: false},
+            {value: "cross-fit", isChecked: false},
+            {value: "barre", isChecked: false},
+            {value: "conditioning", isChecked: false}
+        ]
     }
     handleSubmit = event => {
         console.log('Adding :', this.state.name)
+        let styles = this.state.stylesOptions.filter(obj => obj.isChecked).map(obj => obj.value);
+        console.log('styles :', styles);
 		event.preventDefault();
 		axios.post('/api/trainers/add', {
 			name: this.state.name,
 			imageUrl: this.state.imageUrl,
             age: this.state.age,
-            // styles: this.state.styles,
+            styles: styles,
             about: this.state.about
 		})
 			.then(() => {
@@ -33,27 +36,27 @@ export default class AddTrainer extends Component {
 					name: '',
 					imageUrl: '',
                     age: '',
-                    // styles: [],
+                    styles: [],
                     about: ''
 
 				})
 			})
 			.catch(err => console.log('There is an error: ', err))
 	}
-    // handleAllChecked = event => {
-    //     const styles = this.state.styles;
-    //     styles.forEach(style => style.isChecked = event.target.checked);
-    //     this.setState({styles: styles})
-    // }
-    // handleCheckedElements = event => {
-    //     let styles = this.state.styles;
-    //     styles.forEach(style => {
-    //         if (style.value === event.target.value) {
-    //             style.isChecked = event.target.checked
-    //         }
-    //     })
-    //     this.setState({styles: styles})
-    // }
+    handleAllChecked = event => {
+        const stylesOptions = this.state.stylesOptions;
+        stylesOptions.forEach(style => style.isChecked = event.target.checked);
+        this.setState({stylesOptions: stylesOptions})
+    }
+    handleCheckedElements = event => {
+        let stylesOptions = this.state.stylesOptions;
+        stylesOptions.forEach(style => {
+            if (style.value === event.target.value) {
+                style.isChecked = event.target.checked;
+            }
+        })
+        this.setState({stylesOptions: stylesOptions})
+    }
     
 	handleChange = event => {
 		const { name, value } = event.target;
@@ -97,17 +100,17 @@ export default class AddTrainer extends Component {
                     value={this.state.about}
                     onChange={this.handleChange}
                 />
-                {/* <p>Select workout styles offered:</p>
+                <p>Select workout styles offered:</p>
                 <div className="style-form">
                 <input type="checkbox" onChange={this.handleAllChecked}  value="checkedall" /> Check / Uncheck All
                     <ul>
                     {
-                    this.state.styles.map((style) => {
+                    this.state.stylesOptions.map((style) => {
                         return (<CheckBox handleCheckedElements={this.handleCheckedElements}  {...style} />)
                     })
                     }
                     </ul>
-                </div> */}
+                </div>
 				<button type="submit">Add trainer profile</button>
 			</form>
             </div>
