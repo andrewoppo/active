@@ -10,13 +10,13 @@ export default class AddTrainer extends Component {
         about: '',
         styles: [],
         stylesOptions: [
-            {value: "pilates", isChecked: false},
-            {value: "HIIT", isChecked: false},
-            {value: "yoga", isChecked: false},
-            {value: "weight-training", isChecked: false},
-            {value: "cross-fit", isChecked: false},
             {value: "barre", isChecked: false},
-            {value: "conditioning", isChecked: false}
+            {value: "conditioning", isChecked: false},
+            {value: "cross-fit", isChecked: false},
+            {value: "HIIT", isChecked: false},
+            {value: "pilates", isChecked: false},
+            {value: "weight-training", isChecked: false},
+            {value: "yoga", isChecked: false}
         ]
     }
     handleSubmit = event => {
@@ -66,53 +66,66 @@ export default class AddTrainer extends Component {
 	}
     render() {
 		return (
-            <div>
-			<form onSubmit={this.handleSubmit}>
-				<label htmlFor="name">Name: </label>
-				<input
-					type="text"
-					id="name"
-					name="name"
-					value={this.state.name}
-					onChange={this.handleChange}
-				/>
-				<label htmlFor="imageUrl">Image URL: </label>
-				<input
-					type="text"
-					id="imageUrl"
-					name="imageUrl"
-					value={this.state.imageUrl}
-					onChange={this.handleChange}
-				/>
-                <label htmlFor="age">Age: </label>
-                <input
-                    type="text"
-                    id="age"
-                    name="age"
-                    value={this.state.age}
-                    onChange={this.handleChange}
-                />
-                <label htmlFor="about">Short bio: </label>
-                <input
-                    type="text"
-                    id="about"
-                    name="about"
-                    value={this.state.about}
-                    onChange={this.handleChange}
-                />
-                <p>Select workout styles offered:</p>
-                <div className="style-form">
-                <input type="checkbox" onChange={this.handleAllChecked}  value="checkedall" /> Check / Uncheck All
-                    <ul>
-                    {
-                    this.state.stylesOptions.map((style) => {
-                        return (<CheckBox handleCheckedElements={this.handleCheckedElements}  {...style} />)
-                    })
-                    }
-                    </ul>
-                </div>
-				<button type="submit">Add trainer profile</button>
-			</form>
+            <div className="trainer-form">
+                <h2> Create your trainer profile</h2>
+                <form onSubmit={this.handleSubmit}>
+                    <label htmlFor="name">Name: </label> 
+                    <br />
+                    <input
+                        type="text"
+                        id="name"
+                        name="name"
+                        value={this.state.name}
+                        onChange={this.handleChange}
+                        placeholder="John Doe"
+                        required
+                    /><br />
+                    <label htmlFor="imageUrl">Profile pic: </label>
+                    <br />
+                    <input
+                        type="text"
+                        id="imageUrl"
+                        name="imageUrl"
+                        value={this.state.imageUrl}
+                        onChange={this.handleChange}
+                        placeholder="Upload image..."
+                        required
+                    /><br />
+                    <label htmlFor="age">Age: </label>
+                    <br />
+                    <input
+                        type="text"
+                        id="age"
+                        name="age"
+                        value={this.state.age}
+                        onChange={this.handleChange}
+                        placeholder="26"
+                        required
+                    /><br />
+                    <label htmlFor="about">Short bio: </label>
+                    <br />
+                    <input
+                        type="text"
+                        id="about"
+                        name="about"
+                        value={this.state.about}
+                        onChange={this.handleChange}
+                        placeholder="Tell us a little about yourself..."
+                        required
+                    /><br />
+                    <p>Select workout styles offered:</p>
+                    <div className="style-form">
+                    <input type="checkbox" onChange={this.handleAllChecked}  value="checkedall" /> Check / Uncheck All
+                        <ul>
+                        {
+                        this.state.stylesOptions.map((style) => {
+                            return (<CheckBox handleCheckedElements={this.handleCheckedElements}  {...style} />)
+                        })
+                        }
+                        </ul>
+                    </div>
+                    <button type="submit">Add trainer profile</button>
+                </form>
             </div>
 		)
 	}

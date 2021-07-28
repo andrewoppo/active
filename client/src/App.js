@@ -50,7 +50,11 @@ class App extends React.Component {
             />
             <Route
               exact path='/trainers/:id'
-              component={TrainerBooking}
+              render={props => <TrainerBooking user={this.state.user}{...props}/>}
+            />
+            <Route
+              exact path='/about'
+              component={About}
             />
             <Route
               exact path='/signup'

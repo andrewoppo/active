@@ -4,47 +4,51 @@ import CheckBox from './CheckBox';
 export default class EditTrainer extends Component {
 	render() {
 		return (
-			<div>
-				<h1>Edit trainer profile</h1>
-				<form onSubmit={this.props.handleSubmit}>
-                    <label htmlFor="name">Name: </label>
+			<div className="trainer-form">
+                <h2> Edit trainer profile</h2>
+                <form onSubmit={this.props.handleSubmit}>
+                    <label htmlFor="name">Name: </label> 
+                    <br />
                     <input
                         type="text"
                         id="name"
                         name="name"
                         value={this.props.name}
                         onChange={this.props.handleChange}
-                    />
-                    <label htmlFor="imageUrl">Image URL: </label>
+                    /><br />
+                    <label htmlFor="imageUrl">Profile pic: </label>
+                    <br />
                     <input
                         type="text"
                         id="imageUrl"
                         name="imageUrl"
                         value={this.props.imageUrl}
                         onChange={this.props.handleChange}
-                    />
+                    /><br />
                     <label htmlFor="age">Age: </label>
+                    <br />
                     <input
                         type="text"
                         id="age"
                         name="age"
                         value={this.props.age}
                         onChange={this.props.handleChange}
-                    />
+                    /><br />
                     <label htmlFor="about">Short bio: </label>
+                    <br />
                     <input
                         type="text"
                         id="about"
                         name="about"
                         value={this.props.about}
                         onChange={this.props.handleChange}
-                    />
-                    <p>Select workout styles offered:</p>
+                    /><br />
+                    <p>Workout styles offered:</p>
                     <div className="style-form">
                     <input type="checkbox" onChange={this.props.handleAllChecked}  value="checkedall" /> Check / Uncheck All
                         <ul>
                         {
-                        this.props.styles.map((style) => {
+                        this.props.stylesOptions.map((style) => {
                             return (<CheckBox handleCheckedElements={this.props.handleCheckedElements}  {...style} />)
                         })
                         }
@@ -52,7 +56,7 @@ export default class EditTrainer extends Component {
                     </div>
                     <button type="submit">Update trainer profile</button>
                 </form>
-			</div>
+            </div>
 		)
 	}
 }

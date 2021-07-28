@@ -18,7 +18,7 @@ export default function NavBar(props) {
                     <Link to="/about" className="links"><span>About</span></Link>
                 </div>
                 <div className="add-trainer">
-                    {props.user.role === "trainer" ? (
+                    {props.user && props.user.role === "trainer" ? (
                             <Link to="/trainers/add-trainer" className="links"><span>Add Trainer Profile</span></Link>
                             ) : (
                                 <></>

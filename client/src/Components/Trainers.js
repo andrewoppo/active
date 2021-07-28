@@ -1,11 +1,27 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import AddTrainer from './AddTrainer';
+import CheckBox from './CheckBox';
 
 export default class Trainers extends Component {
     state = {
-        trainers: []
+        trainers: [],
+        isChecked: true,
+        stylesOptions: [
+            {value: "barre", isChecked: true},
+            {value: "conditioning", isChecked: true},
+            {value: "cross-fit", isChecked: true},
+            {value: "HIIT", isChecked: true},
+            {value: "pilates", isChecked: true},
+            {value: "weight-training", isChecked: true},
+            {value: "yoga", isChecked: true}
+        ],
+        // barre: true,
+        // conditioning: true,
+        // crossfit:true,
+        // hiit: true,
+        // weight: true,
+        // yoga: true,
     }
 
     getData = () => {
@@ -22,14 +38,58 @@ export default class Trainers extends Component {
 		this.getData();
 	}
 
+    handleAllChecked = event => {
+        const stylesOptions = this.state.stylesOptions;
+        stylesOptions.forEach(style => style.isChecked = event.target.checked);
+        this.setState({
+            stylesOptions: stylesOptions,
+            isChecked: !this.state.isChecked
+        })
+    }
+
+    handleCheckedElements = event => {
+        let stylesOptions = this.state.stylesOptions;
+        stylesOptions.forEach(style => {
+            if (style.value === event.target.value) {
+                style.isChecked = event.target.checked;
+            }
+        })
+        this.setState({stylesOptions: stylesOptions})
+    }
+
     render() {
+        let filteredTrainers = this.state.trainers.filter(trainer => {
+            this.state.stylesOptions.map(style => style.value)
+        })
         return (
             <div className="Trainers">
                 <div className="filter-box">
                     <h2>The perfect trainer awaits you.</h2>
+                    {/* <select 
+                        name="style" 
+                        onChange={this.handleChange}
+                        value={this.state.style}
+                        id="style"
+                    >
+                        <option value="" selected disabled hidden>Select fitness category...</option>
+                        <option value="barre">Barre</option>
+                        <option value="conditioning">Conditioning</option>
+                        <option value="cross-fit">Cross-fit</option>
+                        <option value="HIIT">HIIT</option>
+                        <option value="weight-training">Weight-training</option>
+                        <option value="yoga">Yoga</option>
+                    </select> */}
+                    <p>Select fitness categories:</p>
+                    <input type="checkbox" onChange={this.handleAllChecked}  defaultChecked={this.state.isChecked} value="checkedall" /> Check / Uncheck All
+                        <ul>
+                        {
+                        this.state.stylesOptions.map((style) => {
+                            return (<CheckBox handleCheckedElements={this.handleCheckedElements}  {...style} />)
+                        })
+                        }
+                        </ul>
                 </div>
                 <div className="trainer-box">
-                    <Link to={'/trainers/add-trainer'}>Add Trainer</Link>
                     {this.state.trainers.map(trainer => {
                         return (
                             <div key={trainer._id} className="trainer">

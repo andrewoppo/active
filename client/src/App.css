@@ -1,6 +1,6 @@
-.App {
+/* .App {
   text-align: center;
-}
+} */
 
 .home-body {
   margin-top: 100px;
@@ -28,6 +28,10 @@
   background-color: blueviolet;
   color: white;
   border: none;
+}
+
+.how-to h2 {
+  text-align: center;
 }
 
 .steps {
@@ -69,6 +73,7 @@
 
 .add-trainer {
   padding-left: 20px;
+  text-align: center;
   width: 200px;
 }
 
@@ -135,7 +140,14 @@
   width: 300px;
   font-size: 32px;
   text-align: left;
-  padding-left: 20px;
+}
+.filter-box {
+  margin-left: 30px;
+}
+
+.Trainers select {
+  padding: 2px;
+  margin-top: 20px;
 }
 .trainer-info p {
   text-align: left;
@@ -165,6 +177,7 @@
 
 .trainer-link {
   padding: 12px;
+  text-align: center;
   margin: 10px;
   border-radius: 2em;
   background-color: blueviolet;
@@ -173,4 +186,46 @@
   border: none;
   width: 200px;
 }
+.trainer-form {
+  margin-left: 100px;
+}
 
+#about {
+  height: 80px;
+  width: 400px;
+}
+
+li {
+  list-style-type: none;
+}
+
+.TrainerBooking {
+  padding-left: 100px;
+  width: 60%;
+}
+
+.TrainerBooking button {
+  margin-left: 80px;
+}
+
+.About {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  height: 400px;
+}
+
+.About p {
+  font-size: 18px;
+  width: 350px;
+  text-align: center;
+}
+
+.About img {
+  object-fit: cover;
+  border-radius: 50%;
+  width: 350px;
+  height: 350px;
+  padding: 20px;
+}
