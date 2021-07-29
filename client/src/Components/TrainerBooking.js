@@ -12,6 +12,7 @@ export default class TrainerBooking extends Component {
         imageUrl: '',
         age: '',
         styles: [],
+        // clickedTimes: [],
         stylesOptions: [
             {value: "pilates", isChecked: false},
             {value: "HIIT", isChecked: false},
@@ -45,6 +46,7 @@ export default class TrainerBooking extends Component {
                     name: res.data.name,
                     imageUrl: res.data.imageUrl,
                     age: res.data.age,
+                    timeSlots: res.data.timeSlots,
                     styles: res.data.styles,
                     about: res.data.about
                 })
@@ -108,6 +110,15 @@ export default class TrainerBooking extends Component {
 		}))
 	}
 
+    onTimeClickHandler = time => {
+        window.alert(`${time} with ${this.state.name} successfully booked!`);
+        console.log('booking ', time);
+        const index = this.state.timeSlots.indexOf(time);
+        let newTimes = this.state.timeSlots
+        newTimes.splice(index, 1)
+        this.setState( {timeSlots: newTimes})
+    }
+
     handleSubmit = event => {
 		event.preventDefault();
         let styles = this.state.stylesOptions.filter(obj => obj.isChecked).map(obj => obj.value);
@@ -129,7 +140,8 @@ export default class TrainerBooking extends Component {
                     timeSlots: response.data.styles,
                     about: response.data.about,
 					editForm: false
-				})
+				});
+                this.props.history.push('/trainers');
 			})
 			.catch(err => console.log(err))
 	}
@@ -166,7 +178,7 @@ export default class TrainerBooking extends Component {
                             <div className="time-slots">
                                 {this.state.trainer.timeSlots.map(time => {
                                     return (
-                                        <span>{time}</span>
+                                        <button onClick={() => this.onTimeClickHandler(time)} value={time} className="signup">{time}</button>
                                     )
                                 })}
                             </div>

@@ -54,7 +54,8 @@ export default class AddTrainer extends Component {
                     timeSlots: [],
                     about: ''
 
-				})
+				});
+                this.props.history.push('/trainers');
 			})
 			.catch(err => console.log('There is an error: ', err))
 	}
