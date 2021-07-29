@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios';
 import CheckBox from './CheckBox';
+import TimeCheckBox from './TimeCheckBox';
 
 export default class AddTrainer extends Component {
     state = {
@@ -8,6 +9,17 @@ export default class AddTrainer extends Component {
         imageUrl: '',
         age: '',
         about: '',
+        timeSlots: [],
+        timeSlotsOptions: [
+            {value: "nine", isChecked: false},
+            {value: "eleven", isChecked: false},
+            {value: "thirteen", isChecked: false},
+            {value: "fifteen", isChecked: false},
+            {value: "seventeen", isChecked: false},
+            {value: "nineteen", isChecked: false}
+
+
+        ],
         styles: [],
         stylesOptions: [
             {value: "barre", isChecked: false},
@@ -22,12 +34,14 @@ export default class AddTrainer extends Component {
     handleSubmit = event => {
         console.log('Adding :', this.state.name)
         let styles = this.state.stylesOptions.filter(obj => obj.isChecked).map(obj => obj.value);
-        console.log('styles :', styles);
+        let timeSlots = this.state.timeSlotsOptions.filter(obj => obj.isChecked).map(obj => obj.value);
+        console.log('timeSlots :', timeSlots);
 		event.preventDefault();
 		axios.post('/api/trainers/add', {
 			name: this.state.name,
 			imageUrl: this.state.imageUrl,
             age: this.state.age,
+            timeSlots: timeSlots,
             styles: styles,
             about: this.state.about
 		})
@@ -37,17 +51,20 @@ export default class AddTrainer extends Component {
 					imageUrl: '',
                     age: '',
                     styles: [],
+                    timeSlots: [],
                     about: ''
 
 				})
 			})
 			.catch(err => console.log('There is an error: ', err))
 	}
+
     handleAllChecked = event => {
         const stylesOptions = this.state.stylesOptions;
         stylesOptions.forEach(style => style.isChecked = event.target.checked);
         this.setState({stylesOptions: stylesOptions})
     }
+
     handleCheckedElements = event => {
         let stylesOptions = this.state.stylesOptions;
         stylesOptions.forEach(style => {
@@ -56,6 +73,22 @@ export default class AddTrainer extends Component {
             }
         })
         this.setState({stylesOptions: stylesOptions})
+    }
+
+    handleAllTimesChecked = event => {
+        const timeSlotsOptions = this.state.timeSlotsOptions;
+        timeSlotsOptions.forEach(time => time.isChecked = event.target.checked);
+        this.setState({timeSlotsOptions: timeSlotsOptions})
+    }
+
+    handleCheckedTimes = event => {
+        let timeSlotsOptions = this.state.timeSlotsOptions;
+        timeSlotsOptions.forEach(time => {
+            if (time.value === event.target.value) {
+                time.isChecked = event.target.checked;
+            }
+        })
+        this.setState({timeSlotsOptions: timeSlotsOptions})
     }
     
 	handleChange = event => {
@@ -120,6 +153,17 @@ export default class AddTrainer extends Component {
                         {
                         this.state.stylesOptions.map((style) => {
                             return (<CheckBox handleCheckedElements={this.handleCheckedElements}  {...style} />)
+                        })
+                        }
+                        </ul>
+                    </div>
+                    <p>Select time slots:</p>
+                    <div className="style-form">
+                        <input type="checkbox" onChange={this.handleAllTimesChecked}  value="checkedall" /> Check / Uncheck All
+                        <ul>
+                        {
+                        this.state.timeSlotsOptions.map((time) => {
+                            return (<TimeCheckBox handleCheckedTimes={this.handleCheckedTimes}  {...time} />)
                         })
                         }
                         </ul>

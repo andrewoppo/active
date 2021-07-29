@@ -12,9 +12,9 @@ router.get('/', (req, res, next) => {
 });
 
 router.post('/add', (req, res, next) => {
-  const { name, imageUrl, age, styles, about } = req.body;
+  const { name, imageUrl, age, styles, timeSlots, about } = req.body;
   console.log(req.body)
-  Trainer.create({ name, imageUrl, age, styles, about })
+  Trainer.create({ name, imageUrl, age, styles, timeSlots, about })
     .then(trainer => {
       res.status(200).json(trainer)
     })
@@ -36,8 +36,8 @@ router.get('/:id', (req, res, next) => {
 });
 
 router.put('/:id', (req, res, next) => {
-  const { name, imageUrl, age, styles, about } = req.body;
-  Trainer.findByIdAndUpdate(req.params.id, { name, imageUrl, age, styles, about }, { new: true })
+  const { name, imageUrl, age, styles, timeSlots, about } = req.body;
+  Trainer.findByIdAndUpdate(req.params.id, { name, imageUrl, age, styles, timeSlots, about }, { new: true })
     .then(trainer => {
       res.json(trainer)
     })

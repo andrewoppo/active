@@ -7,6 +7,7 @@ const trainerSchema = new Schema({
   age: Number,
   styles: [],
   about: String,
+  timeSlots: [],
   owner: { 
         type: Schema.Types.ObjectId, 
         ref: 'User' 
