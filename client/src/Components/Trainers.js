@@ -58,8 +58,38 @@ export default class Trainers extends Component {
     }
 
     render() {
-        let filteredTrainers = this.state.trainers.filter(trainer => {
-            this.state.stylesOptions.map(style => style.value)
+        let selectedStyles = [];
+        this.state.stylesOptions.forEach(style => {
+           if (style.isChecked) {
+               selectedStyles.push(style.value);
+            }
+        })  
+        console.log('selected styles :', selectedStyles)
+        const filteredTrainers = this.state.trainers.filter(trainer => {
+            console.log('filtering trainer: ', trainer);
+            return  trainer.styles.some(style => selectedStyles.indexOf(style) >= 0);
+            })
+
+        console.log('filtered list :', filteredTrainers);
+        const trainerList = filteredTrainers.map(trainer => {
+            console.log('mapping trainer :', trainer);
+            return (
+                <div key={trainer._id} className="trainer">
+                    <img src={trainer.imageUrl}/>
+                    <div className="trainer-info">
+                        <h4>{trainer.name}</h4>
+                        <p>Age: {trainer.age}</p>
+                        <div className="styles">
+                            {trainer.styles.map(style => {
+                                return (
+                                    <span>{style}</span>
+                                )
+                            })}
+                        </div>
+                        <Link to={`/trainers/${trainer._id}`} className='trainer-link'>More Info / Book</Link>    
+                    </div>
+                </div>
+            )
         })
         return (
             <div className="Trainers">
@@ -90,26 +120,7 @@ export default class Trainers extends Component {
                         </ul>
                 </div>
                 <div className="trainer-box">
-                    {this.state.trainers.map(trainer => {
-                        return (
-                            <div key={trainer._id} className="trainer">
-                                <img src={trainer.imageUrl}/>
-                                <div className="trainer-info">
-                                    <h4>{trainer.name}</h4>
-                                    <p>Age: {trainer.age}</p>
-                                    <div className="styles">
-                                        {trainer.styles.map(style => {
-                                            return (
-                                                <span>{style}</span>
-                                            )
-                                        })}
-                                    </div>
-                                    <Link to={`/trainers/${trainer._id}`} className='trainer-link'>More Info / Book</Link>    
-                                </div>
-                            </div>
-                        )
-                    })}
-                    {/* <AddTrainer getData={this.getData} /> */}
+                    {trainerList}
                 </div>
 
             </div>
