@@ -11,7 +11,7 @@ export const CheckBox = props => {
           checked={props.isChecked} 
           value={props.value} 
         /> 
-       {props.value}
+       <span>{props.value}</span>
       </li>
     )
 }

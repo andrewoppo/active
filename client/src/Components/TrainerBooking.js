@@ -4,6 +4,7 @@ import axios from 'axios';
 import EditTrainer from './EditTrainer';
 
 
+
 export default class TrainerBooking extends Component {
     state = {
         trainer: null,
@@ -19,6 +20,17 @@ export default class TrainerBooking extends Component {
             {value: "cross-fit", isChecked: false},
             {value: "barre", isChecked: false},
             {value: "conditioning", isChecked: false}
+        ],
+        timeSlots: [],
+        timeSlotsOptions: [
+            {value: "9:00", isChecked: false},
+            {value: "11:00", isChecked: false},
+            {value: "13:00", isChecked: false},
+            {value: "15:00", isChecked: false},
+            {value: "17:00", isChecked: false},
+            {value: "19:00", isChecked: false}
+
+
         ],
         about: '',
         editForm: false
@@ -64,6 +76,23 @@ export default class TrainerBooking extends Component {
         })
         this.setState({stylesOptions: stylesOptions})
     }
+
+    handleAllTimesChecked = event => {
+        const timeSlotsOptions = this.state.timeSlotsOptions;
+        timeSlotsOptions.forEach(time => time.isChecked = event.target.checked);
+        this.setState({timeSlotsOptions: timeSlotsOptions})
+    }
+
+    handleCheckedTimes = event => {
+        let timeSlotsOptions = this.state.timeSlotsOptions;
+        timeSlotsOptions.forEach(time => {
+            if (time.value === event.target.value) {
+                time.isChecked = event.target.checked;
+            }
+        })
+        this.setState({timeSlotsOptions: timeSlotsOptions})
+    }
+    
     toggleEditForm = () => {
 		this.setState(state => ({
 			editForm: !state.editForm
@@ -73,10 +102,12 @@ export default class TrainerBooking extends Component {
     handleSubmit = event => {
 		event.preventDefault();
         let styles = this.state.stylesOptions.filter(obj => obj.isChecked).map(obj => obj.value);
+        let timeSlots = this.state.timeSlotsOptions.filter(obj => obj.isChecked).map(obj => obj.value);
 		axios.put(`/api/trainers/${this.state.trainer._id}`, {
 			name: this.state.name,
 			imageUrl: this.state.imageUrl,
             age: this.state.age,
+            timeSlots: timeSlots,
             styles: styles,
             about: this.state.about
 		})
@@ -86,6 +117,7 @@ export default class TrainerBooking extends Component {
 					name: response.data.name,
 					imageUrl: response.data.imageUrl,
                     styles: response.data.styles,
+                    timeSlots: response.data.styles,
                     about: response.data.about,
 					editForm: false
 				})
@@ -109,7 +141,7 @@ export default class TrainerBooking extends Component {
                                 )
                             })}
                         </div>
-                        <p>About: {this.state.trainer.about}</p>
+                        <p> {this.state.trainer.about}</p>
                         {/* <Link to={`/trainers/${trainer._id}`} className='trainer-link'>Book</Link>     */}
                     </div>
                 </div>
@@ -117,7 +149,16 @@ export default class TrainerBooking extends Component {
                 {this.props.user && this.props.user.role === "trainer" ? (
                     <button onClick={this.toggleEditForm} className="signup">Edit Profile</button>
                     ) : (
-                        <></>
+                        <div className="time-box">
+                            <h4>Book a time:</h4>
+                            <div className="time-slots">
+                                {this.state.trainer.timeSlots.map(time => {
+                                    return (
+                                        <span>{time}</span>
+                                    )
+                                })}
+                            </div>
+                        </div>
                     )}
                 {this.state.editForm && (
                     <EditTrainer
@@ -125,6 +166,9 @@ export default class TrainerBooking extends Component {
                         handleSubmit={this.handleSubmit}
                         handleChange={this.handleChange}
                         handleCheckedElements={this.handleCheckedElements}
+                        handleCheckedTimes={this.handleCheckedTimes}
+                        handleAllChecked={this.handleAllChecked}
+                        handleAllTimesChecked={this.handleAllTimesChecked}
                     />
                 )}
              </div>

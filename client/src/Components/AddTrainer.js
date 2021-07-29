@@ -11,12 +11,12 @@ export default class AddTrainer extends Component {
         about: '',
         timeSlots: [],
         timeSlotsOptions: [
-            {value: "nine", isChecked: false},
-            {value: "eleven", isChecked: false},
-            {value: "thirteen", isChecked: false},
-            {value: "fifteen", isChecked: false},
-            {value: "seventeen", isChecked: false},
-            {value: "nineteen", isChecked: false}
+            {value: "9:00", isChecked: false},
+            {value: "11:00", isChecked: false},
+            {value: "13:00", isChecked: false},
+            {value: "15:00", isChecked: false},
+            {value: "17:00", isChecked: false},
+            {value: "19:00", isChecked: false}
 
 
         ],

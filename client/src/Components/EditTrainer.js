@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import CheckBox from './CheckBox';
+import TimeCheckBox from './TimeCheckBox';
 
 export default class EditTrainer extends Component {
 	render() {
@@ -52,6 +53,17 @@ export default class EditTrainer extends Component {
                             return (<CheckBox handleCheckedElements={this.props.handleCheckedElements}  {...style} />)
                         })
                         }
+                        </ul>
+                    </div>
+                    <p>Select time slots:</p>
+                    <div className="style-form">
+                        <input type="checkbox" onChange={this.props.handleAllTimesChecked}  value="checkedall" /> Check / Uncheck All
+                        <ul>
+                            {
+                            this.props.timeSlotsOptions.map((time) => {
+                                return (<TimeCheckBox handleCheckedTimes={this.props.handleCheckedTimes}  {...time} />)
+                            })
+                            }
                         </ul>
                     </div>
                     <button type="submit">Update trainer profile</button>
