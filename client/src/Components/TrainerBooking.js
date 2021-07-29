@@ -51,6 +51,15 @@ export default class TrainerBooking extends Component {
             })
             .catch(err => console.log(err)) 
     }
+
+    deleteTrainer = () => {
+		axios.delete(`/api/trainers/${this.state.trainer._id}`)
+			.then(() => {
+				this.props.history.push('/trainers');
+			})
+			.catch(err => console.log(err))
+	}
+
     componentDidMount() {
 		this.getData();
 	}
@@ -147,7 +156,10 @@ export default class TrainerBooking extends Component {
                 </div>
                 <br />
                 {this.props.user && this.props.user.role === "trainer" ? (
-                    <button onClick={this.toggleEditForm} className="signup">Edit Profile</button>
+                    <>
+                        <button onClick={this.deleteTrainer} className="signup">Delete Profile </button>
+                        <button onClick={this.toggleEditForm} className="signup">Edit Profile</button>
+                    </>
                     ) : (
                         <div className="time-box">
                             <h4>Book a time:</h4>
