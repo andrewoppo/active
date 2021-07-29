@@ -156,6 +156,7 @@ export default class TrainerBooking extends Component {
                         <h4>{this.state.trainer.name}</h4>
                         <p>Age: {this.state.trainer.age}</p>
                         <div className="styles">
+                            {this.state.trainer.styles.length > 0 && <></>}
                             {this.state.trainer.styles.map(style => {
                                 return (
                                     <span>{style}</span>
@@ -176,6 +177,7 @@ export default class TrainerBooking extends Component {
                         <div className="time-box">
                             <h4>Book a time:</h4>
                             <div className="time-slots">
+                                {this.state.trainer.timeSlots.length > 0 && <></>}
                                 {this.state.trainer.timeSlots.map(time => {
                                     return (
                                         <button onClick={() => this.onTimeClickHandler(time)} value={time} className="signup">{time}</button>

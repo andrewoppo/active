@@ -162,11 +162,12 @@ export default class AddTrainer extends Component {
                     <div className="style-form">
                         <input type="checkbox" onChange={this.handleAllTimesChecked}  value="checkedall" /> Check / Uncheck All
                         <ul>
-                        {
-                        this.state.timeSlotsOptions.map((time) => {
-                            return (<TimeCheckBox handleCheckedTimes={this.handleCheckedTimes}  {...time} />)
-                        })
-                        }
+                            {this.state.timeSlotsOptions.length > 0 && <></>}
+                            {
+                            this.state.timeSlotsOptions.map((time) => {
+                                return (<TimeCheckBox handleCheckedTimes={this.handleCheckedTimes}  {...time} />)
+                                })
+                            }
                         </ul>
                     </div>
                     <button type="submit">Add trainer profile</button>
