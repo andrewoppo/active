@@ -95,20 +95,6 @@ export default class Trainers extends Component {
             <div className="Trainers">
                 <div className="filter-box">
                     <h2>The perfect trainer awaits you.</h2>
-                    {/* <select 
-                        name="style" 
-                        onChange={this.handleChange}
-                        value={this.state.style}
-                        id="style"
-                    >
-                        <option value="" selected disabled hidden>Select fitness category...</option>
-                        <option value="barre">Barre</option>
-                        <option value="conditioning">Conditioning</option>
-                        <option value="cross-fit">Cross-fit</option>
-                        <option value="HIIT">HIIT</option>
-                        <option value="weight-training">Weight-training</option>
-                        <option value="yoga">Yoga</option>
-                    </select> */}
                     <p>Select fitness categories:</p>
                     <input type="checkbox" onChange={this.handleAllChecked}  defaultChecked={this.state.isChecked} value="checkedall" /> Check / Uncheck All
                         <ul>

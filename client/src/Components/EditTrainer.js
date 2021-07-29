@@ -6,7 +6,6 @@ export default class EditTrainer extends Component {
 	render() {
 		return (
 			<div className="trainer-form">
-                <h2> Edit trainer profile</h2>
                 <form onSubmit={this.props.handleSubmit}>
                     <label htmlFor="name">Name: </label> 
                     <br />
