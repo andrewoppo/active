@@ -69,13 +69,6 @@ passport.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
-const path = require('path');
-app.use(express.static(path.join(__dirname, "/client/build")));
-
-app.use((req, res) => {
-  // If no routes match, send them the React HTML.
-  res.sendFile(__dirname + "/client/build/index.html");
-});
   
 
 // 👇 Start handling routes here
@@ -86,6 +79,14 @@ app.use("/api/trainers", trainers);
 const auth = require('./routes/auth')
 app.use('/api/auth', auth);
 
+
+const path = require('path');
+app.use(express.static(path.join(__dirname, "./client/build")));
+
+app.use((req, res) => {
+  // If no routes match, send them the React HTML.
+  res.sendFile(__dirname + "./client/build/index.html");
+});
 
 
 // ❗ To handle errors. Routes that don't exist or errors that you handle in specific routes
